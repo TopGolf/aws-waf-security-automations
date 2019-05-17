@@ -197,7 +197,7 @@ Resources:
     Properties:
       Database: !Ref GlueAccessLogsDatabase
       Description: !Sub "HTTP Flood Log Parser. Request threshold: ${RequestThreshold}."
-      Name: "HTTPFloodLogParser"
+      Name: !Sub '${ParentStackName}-HTTPFloodLogParser'
       QueryString: !Sub >
         SELECT
           client_ip,
@@ -398,7 +398,7 @@ Resources:
     Properties:
       Database: !Ref GlueAccessLogsDatabase
       Description: !Sub "Scanners Probes ${EndpointType} Log Parser. Error threshold: ${ErrorThreshold}."
-      Name: "ScannersProbesLogParser"
+      Name: '${ParentStackName}-ScannersProbesLogParser'
       QueryString: !If
         - AlbEndpoint
         - !Sub > #IF ALB Stack
