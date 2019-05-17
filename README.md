@@ -53,13 +53,13 @@ chmod +x build-s3-dist.sh
 
 #### 05. Upload deployment assets to your Amazon S3 bucket:
 ```
-aws s3 cp ./dist s3://$DEPLOY_BUCKET-$AWS_REGION/aws-waf-security-automations/latest --recursive --acl bucket-owner-full-control
-aws s3 cp ./dist s3://$DEPLOY_BUCKET-$AWS_REGION/aws-waf-security-automations/$VERSION_CODE --recursive --acl bucket-owner-full-control
+aws s3 cp ./dist s3://$DEPLOY_BUCKET-$AWS_REGION/latest --recursive --acl bucket-owner-full-control
+aws s3 cp ./dist s3://$DEPLOY_BUCKET-$AWS_REGION/$VERSION_CODE --recursive --acl bucket-owner-full-control
 ```
 
 #### 06. Deploy the AWS WAF Security Automations solution:
-* From your designated Amazon S3 bucket where you uploaded the deployment assets, copy the link location for the aws-waf-security-automations.template.
-* Using AWS CloudFormation, launch the AWS WAF Security Automations solution stack using the copied Amazon S3 link for the aws-waf-security-automations.template.
+* From your designated Amazon S3 bucket where you uploaded the deployment assets, copy the link location for the waf-automations-main.template.
+* Using AWS CloudFormation, launch the AWS WAF Security Automations solution stack using the copied Amazon S3 link for the waf-automations-main.template.
 
 ***
 
