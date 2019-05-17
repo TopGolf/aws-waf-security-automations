@@ -1,19 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  (SO0006) - AWS WAF Security Automations %%VERSION%%: This AWS CloudFormation template helps
+  AWS WAF Security Automations %%VERSION%%: This AWS CloudFormation template helps
   you provision the AWS WAF Security Automations stack without worrying about creating and
   configuring the underlying AWS infrastructure.
 
   **WARNING** This template creates an AWS Lambda function, an AWS WAF Web ACL, an Amazon S3 bucket,
   and an Amazon CloudWatch custom metric. You will be billed for the AWS resources used if you
   create a stack from this template.
-
-  **NOTICE** Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved. Licensed under
-  the Amazon Software License (the License). You may not use this file except in compliance with the
-  License. A copy of the License is located at http://aws.amazon.com/asl/ or in the license file
-  accompanying this file. This file is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR
-  CONDITIONS OF ANY KIND, express or implied. See the License for the specific language governing
-  permissions and limitations under the License.
 
 
 Metadata:
@@ -129,7 +122,7 @@ Parameters:
     AllowedValues:
       - 'yes'
       - 'no'
-    Description: Choose yes to enable the component designed to block bad bots and content scrapers.
+    Description: Choose yes to enable the component designed to block bad bots and content scrapers using a honeypot URL that is provided after provisioning.
 
   EndpointType:
     Type: String
@@ -146,8 +139,9 @@ Parameters:
     Description: >-
       If you chose yes for the Activate Scanners & Probes Protection parameter, enter a name for the 
       Amazon S3 bucket where you want to store access logs for your CloudFront distribution or Application 
-      Load Balancer. More about bucket name restriction here: http://amzn.to/1p1YlU5. 
-      If you chose to deactivate this protection, ignore this parameter. 
+      Load Balancer. Note, this will create a new bucket with the provided name. You will then need to modify
+      the loadbalancer to use this bucket to place its logs into. More about bucket name restriction 
+      here: http://amzn.to/1p1YlU5. If you chose to deactivate this protection, ignore this parameter. 
 
   RequestThreshold:
     Type: Number
@@ -155,10 +149,11 @@ Parameters:
     MinValue: 0
     Description:  >-
       If you chose yes for the Activate HTTP Flood Protection parameter, enter the maximum
-      acceptable requests per FIVE-minute period per IP address. Please note that AWS WAF rate
-      based rule requires values greather than 2,000 (if you chose Lambda/Athena log parser options,
-      you can use any value greather than zero). If you chose to deactivate this protection, ignore
-      this parameter.
+      acceptable requests PER FIVE MINUTE PERIOD per IP address. REQUESTS WITH THE FOLLOWING
+      TYPE ARE NOT COUNTED (.css, .png, .jpg, .jpeg, .ico, .cur, .gif, .js). Please note that
+      AWS WAF rate based rule requires values greather than 2,000 (if you chose Lambda/Athena 
+      log parser options, you can use any value greather than zero). If you chose to deactivate 
+      this protection, ignore this parameter.
 
   ErrorThreshold:
     Type: Number
@@ -247,10 +242,10 @@ Mappings:
     SourceCode:
         General:
             S3Bucket: '%%BUCKET_NAME%%'
-            KeyPrefix: "aws-waf-security-automations/%%VERSION%%"
+            KeyPrefix: "%%VERSION%%"
     Solution:
         Data:
-            SendAnonymousUsageData: 'Yes'
+            SendAnonymousUsageData: 'No'
             LogLevel: 'INFO'
         Action:
             WAFWhitelistRule: 'ALLOW'
