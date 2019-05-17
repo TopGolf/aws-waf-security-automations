@@ -1,19 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  (SO0006-ALB) - AWS WAF Security Automations - ALB %%VERSION%%: This AWS CloudFormation template helps
+  AWS WAF Security Automations - ALB %%VERSION%%: This AWS CloudFormation template helps
   you provision the AWS WAF Security Automations stack without worrying about creating and
   configuring the underlying AWS infrastructure.
 
   **WARNING** This template creates an AWS Lambda function, an AWS WAF Web ACL, an Amazon S3 bucket,
   and an Amazon CloudWatch custom metric. You will be billed for the AWS resources used if you
   create a stack from this template.
-
-  **NOTICE** Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved. Licensed under
-  the Amazon Software License (the License). You may not use this file except in compliance with the
-  License. A copy of the License is located at http://aws.amazon.com/asl/ or in the license file
-  accompanying this file. This file is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR
-  CONDITIONS OF ANY KIND, express or implied. See the License for the specific language governing
-  permissions and limitations under the License.
 
 
 Parameters:
@@ -204,7 +197,7 @@ Resources:
   WAFWhitelistRule:
     Type: 'AWS::WAFRegional::Rule'
     Properties:
-      Name: !Sub '${ParentStackName} - Whitelist Rule'
+      Name: !Sub '${ParentStackName}-Whitelist Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'WhitelistRule']]
       Predicates:
         - DataId: !Ref WAFWhitelistSet
@@ -214,7 +207,7 @@ Resources:
   WAFBlacklistRule:
     Type: 'AWS::WAFRegional::Rule'
     Properties:
-      Name: !Sub '${ParentStackName} - Blacklist Rule'
+      Name: !Sub '${ParentStackName}-Blacklist Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'BlacklistRule']]
       Predicates:
         - DataId: !Ref WAFBlacklistSet
@@ -225,7 +218,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: HttpFloodProtectionLogParserActivated
     Properties:
-      Name: !Sub '${ParentStackName} - HTTP Flood Rule'
+      Name: !Sub '${ParentStackName}-HTTPFlood Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'HttpFloodRule']]
       Predicates:
         - DataId: !Ref WAFHttpFloodSet
@@ -236,7 +229,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: ScannersProbesProtectionActivated
     Properties:
-      Name: !Sub '${ParentStackName} - Scanners & Probes Rule'
+      Name: !Sub '${ParentStackName}-ScannersProbes Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'ScannersProbesRule']]
       Predicates:
         - DataId: !Ref WAFScannersProbesSet
@@ -247,7 +240,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: ReputationListsProtectionActivated
     Properties:
-      Name: !Sub '${ParentStackName} - WAF IP Reputation Lists Rule'
+      Name: !Sub '${ParentStackName}-IPReputationLists Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'IPReputationListsRule']]
       Predicates:
         - DataId: !Ref WAFReputationListsSet
@@ -258,7 +251,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: BadBotProtectionActivated
     Properties:
-      Name: !Sub '${ParentStackName} - Bad Bot Rule'
+      Name: !Sub '${ParentStackName}-BadBot Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'BadBotRule']]
       Predicates:
         - DataId: !Ref WAFBadBotSet
@@ -269,7 +262,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: SqlInjectionProtectionActivated
     Properties:
-      Name: !Sub '${ParentStackName} - SQL Injection Rule'
+      Name: !Sub '${ParentStackName}-SQLInj Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'SqlInjectionRule']]
       Predicates:
         - DataId: !Ref WAFSqlInjectionDetection
@@ -280,7 +273,7 @@ Resources:
     Type: 'AWS::WAFRegional::Rule'
     Condition: CrossSiteScriptingProtectionActivated
     Properties:
-      Name: !Sub '${ParentStackName} - XSS Rule'
+      Name: !Sub '${ParentStackName}-XSS Rule'
       MetricName: !Join ['', [!Join ['', !Split ['-', !Ref ParentStackName]], 'XssRule']]
       Predicates:
         - DataId: !Ref WAFXssDetection
