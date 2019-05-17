@@ -45,36 +45,36 @@ mkdir -p "$dist_dir"
 echo "------------------------------------------------------------------------------"
 echo "[Packing] Templates"
 echo "------------------------------------------------------------------------------"
-echo "cp -f $template_dir/aws-waf-security-automations.template dist"
-cp -f "$template_dir/aws-waf-security-automations.template" "$dist_dir"
-echo "cp -f $template_dir/aws-waf-security-automations-cloudfront.template dist"
-cp -f "$template_dir/aws-waf-security-automations-cloudfront.template" "$dist_dir"
-echo "cp -f $template_dir/aws-waf-security-automations-alb.template dist"
-cp -f "$template_dir/aws-waf-security-automations-alb.template" "$dist_dir"
-echo "cp -f $template_dir/aws-waf-security-automations-firehose-athena.template dist"
-cp -f "$template_dir/aws-waf-security-automations-firehose-athena.template" "$dist_dir"
+echo "cp -f $template_dir/waf-automations-main.template dist"
+cp -f "$template_dir/waf-automations-main.template" "$dist_dir"
+echo "cp -f $template_dir/waf-automations-cloudfront.template dist"
+cp -f "$template_dir/waf-automations-cloudfront.template" "$dist_dir"
+echo "cp -f $template_dir/waf-automations-alb.template dist"
+cp -f "$template_dir/waf-automations-alb.template" "$dist_dir"
+echo "cp -f $template_dir/waf-automations-firehose-athena.template dist"
+cp -f "$template_dir/waf-automations-firehose-athena.template" "$dist_dir"
 
 echo "Updating code source bucket in template with $1"
 replace="s/%%BUCKET_NAME%%/$1/g"
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-cloudfront.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-cloudfront.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-alb.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-alb.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-firehose-athena.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-firehose-athena.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-main.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-main.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-cloudfront.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-cloudfront.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-alb.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-alb.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-firehose-athena.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-firehose-athena.template
 
 echo "Updating code source version in template with $2"
 replace="s/%%VERSION%%/$2/g"
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-cloudfront.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-cloudfront.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-alb.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-alb.template
-echo "sed -i '' -e $replace $dist_dir/aws-waf-security-automations-firehose-athena.template"
-sed -i '' -e "$replace" "$dist_dir"/aws-waf-security-automations-firehose-athena.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-main.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-main.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-cloudfront.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-cloudfront.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-alb.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-alb.template
+echo "sed -i '' -e $replace $dist_dir/waf-automations-firehose-athena.template"
+sed -i '' -e "$replace" "$dist_dir"/waf-automations-firehose-athena.template
 
 echo "------------------------------------------------------------------------------"
 echo "[Packing] Log Parser"

@@ -368,7 +368,7 @@ Resources:
     DependsOn: CheckRequirements
     Properties:
       TemplateURL: !Sub
-        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/aws-waf-security-automations-firehose-athena.template'
+        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/waf-automations-firehose-athena.template'
         -
           S3Bucket: !FindInMap ["SourceCode", "General", "S3Bucket"]
           KeyPrefix: !FindInMap ["SourceCode", "General", "KeyPrefix"]
@@ -392,7 +392,7 @@ Resources:
     DependsOn: CheckRequirements
     Properties:
       TemplateURL: !Sub
-        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/aws-waf-security-automations-alb.template'
+        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/waf-automations-alb.template'
         -
           S3Bucket: !FindInMap ["SourceCode", "General", "S3Bucket"]
           KeyPrefix: !FindInMap ["SourceCode", "General", "KeyPrefix"]
@@ -418,7 +418,7 @@ Resources:
     DependsOn: CheckRequirements
     Properties:
       TemplateURL: !Sub
-        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/aws-waf-security-automations-cloudfront.template'
+        - 'https://s3.amazonaws.com/${S3Bucket}-${AWS::Region}/${KeyPrefix}/waf-automations-cloudfront.template'
         -
           S3Bucket: !FindInMap ["SourceCode", "General", "S3Bucket"]
           KeyPrefix: !FindInMap ["SourceCode", "General", "KeyPrefix"]
