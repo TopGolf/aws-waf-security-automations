@@ -398,7 +398,7 @@ Resources:
     Properties:
       Database: !Ref GlueAccessLogsDatabase
       Description: !Sub "Scanners Probes ${EndpointType} Log Parser. Error threshold: ${ErrorThreshold}."
-      Name: '${ParentStackName}-ScannersProbesLogParser'
+      Name: !Sub '${ParentStackName}-ScannersProbesLogParser'
       QueryString: !If
         - AlbEndpoint
         - !Sub > #IF ALB Stack
