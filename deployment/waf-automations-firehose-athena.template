@@ -218,7 +218,7 @@ Resources:
             AND httprequest.uri not like '%.cur'
             AND httprequest.uri not like '%.gif'
             AND httprequest.uri not like '%.js'
-            AND httprequest.url not like '/'
+            AND httprequest.uri not like '/'
           GROUP BY
             httprequest.clientip,
             date_trunc('minute', from_unixtime(timestamp/1000))
