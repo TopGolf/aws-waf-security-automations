@@ -353,7 +353,7 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Condition: HttpFloodProtectionLogParserActivated
     DependsOn: CheckRequirements
-    DeletionPolicy: Retain
+    DeletionPolicy: Delete
     Properties:
       AccessControl: Private
       PublicAccessBlockConfiguration:
