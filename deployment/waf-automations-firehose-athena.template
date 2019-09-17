@@ -210,14 +210,6 @@ Resources:
             "${GlueAccessLogsDatabase}"."${GlueWafAccessLogsTable}"
           WHERE
             from_unixtime(timestamp/1000) > DATE_ADD('minute', -${WAFBlockPeriod}, NOW())
-            AND httprequest.uri not like '%.css'
-            AND httprequest.uri not like '%.png'
-            AND httprequest.uri not like '%.jpg'
-            AND httprequest.uri not like '%.jpeg'
-            AND httprequest.uri not like '%.ico'
-            AND httprequest.uri not like '%.cur'
-            AND httprequest.uri not like '%.gif'
-            AND httprequest.uri not like '%.js'
             AND httprequest.uri not like '/'
           GROUP BY
             httprequest.clientip,
@@ -414,10 +406,8 @@ Resources:
             WHERE
               parse_datetime(time, 'yyyy-MM-dd''T''HH:mm:ss.SSSSSS''Z') > DATE_ADD('minute', -${WAFBlockPeriod}, NOW()) AND
               target_status_code = ANY (VALUES '400', '401', '403', '404', '405')
-              AND request_url NOT LIKE '%.ico'
-              AND request_url NOT LIKE '%datepicker_js%'
-              AND request_url NOT LIKE '%apple-touch%'
-              AND request_url NOT LIKE '%buzz-box%'
+              AND request_url NOT LIKE '%puppet-debian%'
+              AND request_url NOT LIKE '%dockerdev%'
             GROUP BY
               client_ip,
               date_trunc('minute', parse_datetime(time, 'yyyy-MM-dd''T''HH:mm:ss.SSSSSS''Z'))
